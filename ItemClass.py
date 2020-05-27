@@ -38,10 +38,7 @@ def equip():
         try:
             if item != i.name:
                 pass
-        except AttributeError:
-            pass
-        try:
-            if item == i.name:
+            elif item == i.name:
                 type_of_item = i.i_type
                 # Add item to inventory, before replacing in equipped
                 PlayerClass.char.inventory.append(PlayerClass.char.equipped_items[type_of_item])
@@ -53,8 +50,6 @@ def equip():
 
                 print(f"\n{i.name} is now equipped")
                 PlayerClass.char.inventory.remove(i)
-            elif item != i.name:
-                pass
         except AttributeError:
             pass
 
