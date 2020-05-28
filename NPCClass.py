@@ -86,6 +86,7 @@ def tradeItem():
                 else:
                     print("\nI don't understand.")
             except AttributeError:
+
                 pass
 
 
