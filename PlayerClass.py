@@ -6,12 +6,14 @@ class Player:
         and another which displays the content of the inventory
     """
 
-    def __init__(self, name, position, hp, strength, defence):
+    def __init__(self, name, position, hp, strength, defence, level, xp):
         self.name = name
         self.position = position
         self.hp = hp
         self.strength = strength
         self.defence = defence
+        self.level = level
+        self.xp = xp
 
         self.inventory = []
         self.equipped_items = {"Helmet": None,
@@ -20,6 +22,28 @@ class Player:
                                "Shield": None
                                }
         self.gold = 0
+
+    def levelUp(self):
+        new_level = self.xp // 100
+        if new_level > self.level:
+            levelup = True
+            print("You leveled up!")
+            print("You can level up one of the following: Health/Strength/Defence")
+            while levelup:
+                stat = input("Which will it be? > ")
+                if stat == "Health":
+                    char.hp += 5
+                    levelup = False
+                elif stat == "Strength":
+                    char.strength += 5
+                    levelup = False
+                elif stat == "Defence":
+                    char.defence += 5
+                    levelup = False
+                else:
+                    print("Please pick a valid statistic.")
+
+        self.level = new_level
 
     def add_item(self, item):
         self.inventory.append(item)
@@ -97,7 +121,9 @@ class Player:
         print(f"Your Total Health: {round(self.hp, 2)}")
         print(f"Your Total Attack: {self.strength + weapon_dmg + chest_dmg + helmet_dmg + shield_dmg}")
         print(f"Your Total Defence: {self.defence}")
+        print(f"Level: {self.level}")
+        print(f"Current XP: {self.xp}")
         print("-----------------------")
 
 
-char = Player("P", 0, 100, 3, 1)
+char = Player("P", 0, 100, 3, 1, 0, 0)

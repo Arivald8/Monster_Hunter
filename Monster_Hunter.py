@@ -1,7 +1,4 @@
-
-# Monster_Hunter Development Ver 1.5
-
-
+# Monster_Hunter Development Ver 1.6
 
 import sys
 
@@ -140,7 +137,6 @@ def checkEncounters():
         else:
             pass
 
-
     # For every orc in the army, if the orc pos is same as player pos, but not defeated, discover the monster
     for orc in MonsterClass.army_of_orcs:
         if orc.defeated:
@@ -161,8 +157,8 @@ def checkEncounters():
 
                 else:
                     print("You stutter something as you run away in fear...")
+                    
     # If an orc is found, leave a symbol on the board
-
     for orc in MonsterClass.army_of_orcs:
         if orc.found:
             GameBoard.theBoard[orc.position] = orc.symbol

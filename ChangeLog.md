@@ -49,4 +49,11 @@
 * Simplified theBoard list
 * Added few normal items to be found around the board
 * Fixed item stats bug where looking up the Leather Armour breaks the game
-* When placing items on the board, each item needed a separate if statement in the Monster_Hunter.py checkEncounters function. This has been replaced with a single for loop that iterates over items in a new list -> on_board_items located in ItemClass.py. 
+* When placing items on the board, each item needed a separate if statement in the Monster_Hunter.py checkEncounters function. This has been replaced with a single for loop that iterates over items in a new list -> on_board_items located in ItemClass.py.
+
+**Monster_Hunter Dev Change v1.6**
+
+* Added player level and xp to PlayerClass
+* Added a simple level up function
+* Player is now able to pick a statistic to level up
+* Adjusted Bald Orc and Destroyer Orc stats to account for items on the board
