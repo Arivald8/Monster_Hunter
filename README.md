@@ -1,11 +1,11 @@
-# Monster_Hunter - Development branch (v1.6)
+
+# Monster_Hunter - Master Branch(v1.6)
+
 To start the game **_you will need all the .py files the same directory._** Then simply open your favourite command terminal and navigate to the directory of the Monster_Hunter.py. Once in the correct directory use:
 
     python Monster_Hunnter.py
           
 # Development Start
-The player starts with a basic weapon already equipped.
-
 For testing purposes time.sleep() has been commented out to speed up the process.
 
 # The Game
