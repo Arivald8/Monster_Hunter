@@ -49,12 +49,12 @@ def tradeItem():
             print(f"INT Required: {spell.int_req} \n"
                   f"Desc: {spell.description} \n"
                   f"Price: {spell.value}\n")
-        print(f'Player Gold: {PC.char.gold}')
+        print(f'Player Gold: {round(PC.char.gold), 2}')
 
         buy_item = input("Which item would you like to buy? > ").lower()
         for i, item in enumerate(the_trader.inventory):
             if item.name.lower() == buy_item:
-                if PC.char.gold >= item.value:
+                if round(PC.char.gold, 2) >= item.value:
                     PC.char.gold -= item.value
                     PC.char.inventory.append(item)
                     print("\nItem added to your inventory.")
@@ -163,8 +163,8 @@ def upgradeItem():
 
     while upgrading:
         item_choice = input("Which item would you like to upgrade? > ").lower()
-        if item_choice == "exit":
-            upgrading = False
+        if item_choice in ["exit", '']:
+            break
         for obj in PC.char.inventory:  # Looping through player inventory and inserting into a new table
             try:
                 if item_choice == obj.name.lower():
@@ -197,13 +197,13 @@ def upgradeItem():
 
 
 # Create an NPC
-the_trader = Npc("The Mystical Trader", "⚖", "Trader", gen_ran_pos(), " ", False)
+the_trader = Npc("The Mystical Trader", "T", "Trader", gen_ran_pos(), " ", False)
 the_trader.gold = 1000
-the_healer = Npc("The Healer", "🧚‍", "Healer", gen_ran_pos(), " ", False)
+the_healer = Npc("The Healer", 'H', "Healer", gen_ran_pos(), " ", False)
 
-the_wizard = Npc("The Wizard", "🧙", "Wizard", gen_ran_pos(), " ", False)
+the_wizard = Npc("The Wizard", "W", "Wizard", gen_ran_pos(), " ", False)
 
-the_blacksmith = Npc("The Blacksmith", "🔧", "Blacksmith", 1, " ", False)
+the_blacksmith = Npc("The Blacksmith", "S", "Blacksmith", 1, " ", False)
 
 # Give items to an NPC
 # Normal - leather_cap, leather_armour, iron_helmet, iron_shield, iron_armour, iron_sword

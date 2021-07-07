@@ -73,8 +73,8 @@ def equip():
                 PlayerClass.char.equipped_items[type_of_item] = i
 
                 # Adjust player statistics
-                PlayerClass.char.hp += i.health
-                PlayerClass.char.defence += i.defence
+                # PlayerClass.char.hp += i.health
+                # PlayerClass.char.defence += i.defence
 
                 print(f"\n{i.name} is now equipped")
                 PlayerClass.char.inventory.remove(i)
@@ -89,8 +89,8 @@ def unequip():
         i = PlayerClass.char.equipped_items[item]
 
         # Adjust stats for character without item
-        PlayerClass.char.hp -= i.health
-        PlayerClass.char.defence -= i.defence
+        # PlayerClass.char.hp -= i.health
+        # PlayerClass.char.defence -= i.defence
 
         PlayerClass.char.equipped_items[item] = None
         print(f"\n{i.name} is now unequipped")
@@ -102,18 +102,18 @@ def unequip():
 # name, i_type, hidden, position, damage, defence, health, dexterity, intelligence, magic, value, rarity, found,
 # level, NPC
 # Create normal items
-wooden_stick = Item("Wooden Stick", "Weapon", " ", None, 5, 0, 0, 2, 0, 0, 10, "Normal", False, 0)
-wooden_shield = Item("Wooden Shield", "Shield", " ", None, 0, 5, 0, 2, 0, 0, 10, "Normal", False, 0)
-leather_cap = Item("Leather Cap", "Helmet", " ", gen_ran_pos(), 0, 7, 2, 0, 0, 0, 17, "Normal", False, 0, 'trader')
-leather_armour = Item("Leather Armour", "Chest", " ", gen_ran_pos(), 0, 12, 2, 0, 0, 0, 28, "Normal", False, 0, 'trader')
-iron_sword = Item("Iron Sword", "Weapon", " ", None, 25, 0, 0, -1, 0, 0, 120, "Normal", False, 0, 'trader')
-iron_armour = Item("Iron Armour", "Chest", " ", None, 0, 27, 0, -3, 0, 0, 62, "Normal", False, 0, 'trader')
-iron_shield = Item("Iron Shield", "Shield", " ", None, 0, 22, 0, -2, 0, 0, 48, "Normal", False, 0, 'trader')
-iron_helmet = Item("Iron Helmet", "Helmet", " ", None, 0, 17, 0, -1, 0, 0, 32, "Normal", False, 0, 'trader')
+wooden_stick = Item("Wooden Stick", "Weapon", " ", None, 5, 0, 0, 2, 0, 0, 65, "Normal", False, 0)
+wooden_shield = Item("Wooden Shield", "Shield", " ", None, 0, 5, 0, 2, 0, 0, 50, "Normal", False, 0)
+leather_cap = Item("Leather Cap", "Helmet", " ", gen_ran_pos(), 0, 7, 2, 0, 0, 0, 45, "Normal", False, 0, 'trader')
+leather_armour = Item("Leather Armour", "Chest", " ", gen_ran_pos(), 0, 12, 2, 0, 0, 0, 60, "Normal", False, 0, 'trader')
+iron_sword = Item("Iron Sword", "Weapon", " ", None, 25, 0, 0, -1, 0, 0, 180, "Normal", False, 0, 'trader')
+iron_armour = Item("Iron Armour", "Chest", " ", None, 0, 27, 0, -3, 0, 0, 160, "Normal", False, 0, 'trader')
+iron_shield = Item("Iron Shield", "Shield", " ", None, 0, 22, 0, -2, 0, 0, 120, "Normal", False, 0, 'trader')
+iron_helmet = Item("Iron Helmet", "Helmet", " ", None, 0, 17, 0, -1, 0, 0, 100, "Normal", False, 0, 'trader')
 
 # Create rare items
-dragon_plate = Item("Dragon Plate", "Chest", " ", None, 2, 55, 15, -3, 5, 10, 260, "Rare", False, 0, 'trader')
-half_moon_katana = Item("Half Moon Katana", "Weapon", " ", None, 60, 3, 0, 6, 6, 6, 280, "Rare", False, 0, 'trader')
+dragon_plate = Item("Dragon Plate", "Chest", " ", None, 0, 35, 15, -3, 5, 10, 350, "Rare", False, 0, 'trader')
+half_moon_katana = Item("Half Moon Katana", "Weapon", " ", None, 40, 0, 0, 6, 6, 6, 480, "Rare", False, 0, 'trader')
 
 # Create unique items
 one_hit_wonder = Item("One Hit Wonder", "Weapon", " ", None, 500, 0, 0, 0, 10, 10, 5000, "Unique", False, 0, 'trader')
@@ -217,7 +217,7 @@ on_board_items = [leather_cap, leather_armour]
 def s_fire_ball(monster):
     # Cast a fireball that deals 60 base damage
 
-    reduced_hit = max((PlayerClass.char.magic + 60) - monster.defence, 0)
+    reduced_hit = max((PlayerClass.char.magic + 60) / monster.defence, 0)
     monster.hp -= reduced_hit
     print("\nYou cast a spell...")
     print("\n-------------------------------------------------")

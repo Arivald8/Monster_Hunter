@@ -169,13 +169,14 @@ def checkEncounters():
     for orc in MonsterClass.army_of_orcs:
         if not orc.defeated and orc.position == PlayerClass.char.position:
             print("\nYou found the monster!")
-            print(f"The {orc.name}")
+            orc_level = (orc.attack - 20) // 4 + 1  # 4 orcs = L1, 4 orcs = L2, 2 orcs = L3
+            print(f"The {orc.name} - Level {orc_level}")
             orc.found = True
 
             fight_flee = input("\nDo you want to fight? [y/n] > ")
             if fight_flee == "y":
                 GameBoard.theBoard[orc.position] = orc.symbol
-                CombatSystem.battle(orc)
+                CombatSystem.battle(orc, monster_level=orc_level)
 
             elif fight_flee == "n":
                 pass
@@ -192,26 +193,26 @@ def checkEncounters():
             else:
                 GameBoard.theBoard[orc.position] = " "
 
+    if MonsterClass.orc_boss.position == PlayerClass.char.position:
+        print("\nYou found the Destroyer Orc!")
+        print("Be careful, he's not like the other Orcs!")
+        MonsterClass.orc_boss.found = True
+
+        boss_fight = input("\nDo you want to fight the boss? [y/n] > ")
+        if boss_fight == "y":
+            GameBoard.theBoard[MonsterClass.orc_boss.position] = MonsterClass.orc_boss.symbol
+            CombatSystem.battle(MonsterClass.orc_boss, monster_level=3)
+        elif boss_fight == "n":
+            pass
+        else:
+            print("You stutter something as you run away in fear...")
+
+    if MonsterClass.orc_boss.found:
+        GameBoard.theBoard[MonsterClass.orc_boss.position] = MonsterClass.orc_boss.symbol
     if MonsterClass.orc_boss.defeated:
         print("You killed the boss, you win!")
         sys.exit()
-    else:
-        if MonsterClass.orc_boss.position == PlayerClass.char.position:
-            print("\nYou found the Destroyer Orc!")
-            print("Be careful, he's not like the other Orcs!")
-            MonsterClass.orc_boss.found = True
 
-            boss_fight = input("\nDo you want to fight the boss? [y/n] > ")
-            if boss_fight == "y":
-                GameBoard.theBoard[MonsterClass.orc_boss.position] = MonsterClass.orc_boss.symbol
-                CombatSystem.battle(MonsterClass.orc_boss)
-
-            elif boss_fight == "n":
-                pass
-            else:
-                print("You stutter something as you run away in fear...")
-    if MonsterClass.orc_boss.found:
-        GameBoard.theBoard[MonsterClass.orc_boss.position] = MonsterClass.orc_boss.symbol
 
 def makeSave():
     inventory_list = [obj for obj in PlayerClass.char.inventory]

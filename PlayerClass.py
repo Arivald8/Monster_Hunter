@@ -27,14 +27,14 @@ class Player:
                                "Weapon": None,
                                "Shield": None
                                }
-        self.gold = 0
+        self.gold = 50
 
     def levelUp(self):
         new_level = self.xp // 100
         if new_level > self.level:
             print("You leveled up!")
             print("You can level up one of the following: Health/Strength/Defence/Dexterity/Intelligence/Magic")
-            levels = {'health': 5, 'strength': 1, 'defence': 1, 'dexterity': 1, 'intelligence': 5, 'magic': 1}
+            levels = {'health': 20, 'strength': 5, 'defence': 5, 'dexterity': 5, 'intelligence': 5, 'magic': 5}
             while True:
                 stat = input("Which will it be? > ").lower()
                 if stat in levels:
@@ -118,10 +118,10 @@ class Player:
               f"Type: {self.race_type:>31s}\n"
               f"-----------------------\n"
               f"Base/ Total Strength:       ({int(self.strength):3d}) {int(self.strength + weapon_dmg + chest_dmg + helmet_dmg + shield_dmg):3d}\n"
-              f"Base/ Total Defence:        ({int(self.defence):3d}) {int(self.defence):3d}\n"
-              f"Base/ Total Dexterity:      ({int(self.dexterity):3d}) {int(self.dexterity):3d}\n"
-              f"Base/ Total Intelligence:   ({int(self.intelligence):3d}) {int(self.intelligence):3d}\n"
-              f"Base/ Total Magic:          ({int(self.magic):3d}) {int(self.magic):3d}\n"
+              f"Base/ Total Defence:        ({int(self.defence):3d}) {int(self.defence + weapon_def + chest_def + helmet_def + shield_def):3d}\n"
+              f"Dexterity:                        {int(self.dexterity):3d}\n"
+              f"Intelligence:                     {int(self.intelligence):3d}\n"
+              f"Magic:                            {int(self.magic):3d}\n"
               f"-----------------------")
 
 
@@ -285,7 +285,7 @@ def createCharacter():
                     the_player[0] += 3
                     the_player[4] += 3
                 elif race_type == 'Thief':
-                    the_player[2] += 100
+                    the_player[2] += 3
                     the_player[3] += 3
                 correct_pick2 = True
             else:
